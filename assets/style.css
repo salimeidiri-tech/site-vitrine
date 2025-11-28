@@ -1,0 +1,203 @@
+/* ===================================== */
+/* 1. VARIABLES & FONDAMENTAUX */
+/* ===================================== */
+
+:root {
+    /* La couleur verte dominante pour le design de TMD EXPO */
+    --tmd-green: #38c172; 
+    /* Une couleur sombre pour le texte principal et les titres */
+    --tmd-dark: #212529;
+    /* Couleur de fond générale (très clair pour les sections claires) */
+    --tmd-background-light: #f8f9fa;
+    /* Couleur du fond de carte pour le logo Hermès */
+    --tmd-orange-realisation: #ff6600;
+}
+
+/* Application des couleurs sur les classes Bootstrap */
+.text-success { color: var(--tmd-green) !important; }
+.btn-success {
+    background-color: var(--tmd-green) !important;
+    border-color: var(--tmd-green) !important;
+    color: white !important;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.btn-success:hover {
+    background-color: #2da45e !important; /* Vert légèrement plus foncé au survol */
+    border-color: #2da45e !important;
+}
+.btn-outline-success {
+    color: var(--tmd-green) !important;
+    border-color: var(--tmd-green) !important;
+}
+
+/* Styles pour le corps de la page */
+body {
+    font-family: Arial, sans-serif; /* Remplacer par la police souhaitée (ex: Poppins) */
+    background-color: white;
+}
+
+
+/* ===================================== */
+/* 2. TITRES ET SOULIGNEMENTS SPÉCIAUX */
+/* ===================================== */
+
+h2.display-4 {
+    color: var(--tmd-dark);
+    font-weight: 700;
+}
+
+/* Le soulignement vert sous les titres de section (ex: Nos services) */
+.green-underline {
+    width: 60px; 
+    height: 3px; 
+    background-color: var(--tmd-green);
+    margin: 10px auto 30px auto; 
+    border: none;
+    opacity: 1; 
+}
+
+
+/* ===================================== */
+/* 3. SECTION NOS SERVICES */
+/* ===================================== */
+
+#services {
+    background-color: var(--tmd-background-light);
+}
+
+.service-card {
+    border: 1px solid #eee;
+    padding: 30px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Style pour les icônes de services (en utilisant Font Awesome) */
+.service-card i {
+    color: var(--tmd-green);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+
+/* ===================================== */
+/* 4. SECTION NOS RÉALISATIONS */
+/* ===================================== */
+
+.realisation-card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.realisation-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.realisation-card img {
+    height: 200px;
+    object-fit: cover; /* Assure que l'image couvre l'espace sans se déformer */
+    width: 100%;
+}
+
+/* Styles spécifiques pour les cartes avec les logos (fond orange et rose) */
+.bg-orange {
+    background-color: var(--tmd-orange-realisation) !important;
+}
+.bg-pink {
+    background-color: #ff69b4 !important; /* Une couleur rose ou fuchsia pour l'exemple Pop Culture */
+}
+
+
+/* ===================================== */
+/* 5. SECTION NOS PARTENAIRES */
+/* ===================================== */
+
+.partenaire-card {
+    min-height: 120px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.partenaire-card:hover {
+    transform: scale(1.05);
+}
+
+.partenaire-card img {
+    max-width: 100%;
+    max-height: 70px; /* Limiter la hauteur des logos */
+    filter: grayscale(100%); /* Optionnel : Griser les logos par défaut */
+    transition: filter 0.3s;
+}
+
+.partenaire-card:hover img {
+    filter: grayscale(0%); /* Optionnel : Couleur au survol */
+}
+
+
+/* ===================================== */
+/* 6. SECTION CONTACTEZ-NOUS */
+/* ===================================== */
+
+#contact .card {
+    border-radius: 12px;
+}
+
+/* Styles pour les coordonnées (partie gauche du formulaire) */
+#contact h3 {
+    font-weight: 600;
+}
+
+#contact .d-flex i {
+    font-size: 1.5rem;
+    color: var(--tmd-green);
+}
+
+/* Styles du formulaire */
+.form-control {
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+/* Styles pour le placeholder de la Google Map */
+.map-placeholder {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    /* La map intégrée occupera 100% de la hauteur/largeur */
+}
+
+/* Cacher l'icône de la carte cassée si la map ne se charge pas */
+.map-placeholder iframe {
+    display: block;
+}
+
+/* ===================================== */
+/* 7. FOOTER */
+/* ===================================== */
+
+footer {
+    background-color: var(--tmd-dark);
+    color: #e0e0e0;
+}
+
+footer a {
+    color: #e0e0e0;
+}
+
+footer a:hover {
+    color: var(--tmd-green);
+}
