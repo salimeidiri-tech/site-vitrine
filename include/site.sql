@@ -18,7 +18,9 @@ USE tmd_expo_db;
 --
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nom_complet` VARCHAR(255) NOT NULL,
+  `nom` VARCHAR(255) NOT NULL,
+  `prenom` VARCHAR(255) NOT NULL,
+  `numero` VARCHAR(20) NOT NULL,
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `mot_de_passe` VARCHAR(255) NOT NULL, -- Doit contenir le HASH du mot de passe (ex: password_hash() en PHP)
   `role` ENUM('client', 'admin') NOT NULL DEFAULT 'client',
@@ -58,6 +60,7 @@ CREATE TABLE IF NOT EXISTS `messages_contact` (
   `id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nom_complet` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
+  `objet` VARCHAR(255) NOT NULL,
   `message` TEXT NOT NULL,
   `date_soumission` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `est_traite` BOOLEAN NOT NULL DEFAULT FALSE

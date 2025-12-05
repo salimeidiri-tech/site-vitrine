@@ -19,21 +19,27 @@
     background-color: var(--tmd-green) !important;
     border-color: var(--tmd-green) !important;
     color: white !important;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
 }
 .btn-success:hover {
     background-color: #2da45e !important; /* Vert légèrement plus foncé au survol */
     border-color: #2da45e !important;
+    transform: translateY(-2px); /* Effet de petit soulèvement */
 }
 .btn-outline-success {
     color: var(--tmd-green) !important;
     border-color: var(--tmd-green) !important;
 }
+.text-primary { /* Utilisation pour les sous-titres dans la modale */
+    color: var(--tmd-dark) !important; 
+    font-weight: 700 !important;
+}
 
 /* Styles pour le corps de la page */
 body {
-    font-family: Arial, sans-serif; /* Remplacer par la police souhaitée (ex: Poppins) */
+    font-family: 'Arial', sans-serif;
     background-color: white;
+    padding-top: 70px; /* Espace pour la navbar fixe */
 }
 
 
@@ -56,6 +62,206 @@ h2.display-4 {
     opacity: 1; 
 }
 
+/* ===================================== */
+/* 8. SECTION À PROPOS DE TMD EXPO (ABOUT) - VERSION AMÉLIORÉE */
+/* ===================================== */
+
+#about {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px; /* Espace pour la navbar fixe */
+}
+
+#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(56, 193, 114, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(56, 193, 114, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.animate-fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.highlight-box {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-left: 4px solid var(--tmd-green);
+    box-shadow: 0 4px 15px rgba(56, 193, 114, 0.1);
+}
+
+.image-container {
+    position: relative;
+    z-index: 2;
+}
+
+.experience-badge {
+    background: linear-gradient(135deg, var(--tmd-green) 0%, #2da45e 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.stats-overlay {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 193, 114, 0.2);
+}
+
+.decoration-circle {
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 193, 114, 0.1) 0%, rgba(56, 193, 114, 0.05) 70%, transparent 100%);
+    animation: float 6s ease-in-out infinite;
+}
+
+.decoration-circle:nth-child(2) {
+    animation-delay: -3s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.about-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 193, 114, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.about-card:hover::before {
+    left: 100%;
+}
+
+.about-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(56, 193, 114, 0.15);
+    border-color: var(--tmd-green) !important;
+}
+
+.hover-lift {
+    transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-icon-wrapper {
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover .card-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.icon-circle {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.about-card:hover .icon-circle {
+    background: linear-gradient(135deg, var(--tmd-green) 0%, #2da45e 100%);
+    transform: rotate(360deg);
+}
+
+.about-card:hover .icon-circle i {
+    color: white !important;
+    transform: scale(1.2);
+}
+
+.card-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--tmd-green) 0%, #2da45e 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.about-card:hover .card-accent {
+    transform: scaleX(1);
+}
+
+/* Responsive pour la section About */
+@media (max-width: 991.98px) {
+    .hero-content {
+        text-align: center !important;
+    }
+
+    .experience-badge {
+        position: static !important;
+        margin-bottom: 1rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .stats-overlay {
+        position: static !important;
+        margin-top: 1rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .decoration-circle {
+        display: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #about {
+        padding: 3rem 0;
+    }
+
+    .highlight-box {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .about-card {
+        margin-bottom: 2rem;
+    }
+}
 
 /* ===================================== */
 /* 3. SECTION NOS SERVICES */
@@ -66,59 +272,290 @@ h2.display-4 {
 }
 
 .service-card {
-    border: 1px solid #eee;
+    border: none; /* Enlever la bordure par défaut pour un look plus épuré */
     padding: 30px;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s;
+    border: 1px solid #e0e0e0; /* Bordure initiale très légère */
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-8px); /* Soulèvement plus prononcé */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Ombre plus visible */
+    border-color: var(--tmd-green); /* Bordure verte au survol */
 }
 
-/* Style pour les icônes de services (en utilisant Font Awesome) */
+/* Style pour l'encadrement de l'icône (le petit cercle autour de l'icône) */
+.service-icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--tmd-green); /* Cercle vert autour */
+    border-radius: 50%;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+/* Style de l'icône de services */
 .service-card i {
     color: var(--tmd-green);
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 1.8rem; /* Taille légèrement ajustée pour le cercle */
+    margin: 0; /* Réinitialiser la marge pour l'alignement */
+}
+
+.service-card:hover .service-icon-box {
+    background-color: var(--tmd-green);
+}
+
+.service-card:hover .service-icon-box i {
+    color: white;
+}
+
+.service-card h5 {
+    font-weight: 700 !important;
+    color: var(--tmd-dark) !important;
 }
 
 
 /* ===================================== */
-/* 4. SECTION NOS RÉALISATIONS */
+/* 4. SECTION NOS RÉALISATIONS (Cartes et Modales) */
 /* ===================================== */
 
+/* Conteneur du lien pour rendre la carte entière cliquable */
+.realisation-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 .realisation-card {
-    border: none;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
 .realisation-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; 
 }
 
 .realisation-card img {
     height: 200px;
-    object-fit: cover; /* Assure que l'image couvre l'espace sans se déformer */
+    object-fit: cover; 
     width: 100%;
 }
 
-/* Styles spécifiques pour les cartes avec les logos (fond orange et rose) */
+/* Styles spécifiques pour les cartes avec les logos (Hermès) */
 .bg-orange {
     background-color: var(--tmd-orange-realisation) !important;
 }
-.bg-pink {
-    background-color: #ff69b4 !important; /* Une couleur rose ou fuchsia pour l'exemple Pop Culture */
+
+
+/* --- STYLES PROFESSIONNELS POUR LA MODALE (POPUP) --- */
+
+.modal-realisation {
+    border-radius: 1.5rem; 
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4); 
+    border: none;
 }
 
+/* Conteneur de l'image à gauche dans la modale */
+.realisation-img {
+    background-size: cover;
+    background-position: center;
+    min-height: 500px; 
+    position: relative;
+    border-right: 4px solid var(--tmd-green); 
+}
+
+/* L'effet de dégradé au-dessus de l'image (pour l'aspect pro) */
+.realisation-img .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Dégradé léger et moderne */
+    background: linear-gradient(135deg, rgba(56, 193, 114, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+.modal-body {
+    padding: 2.5rem; 
+    background-color: white; 
+}
+
+.modal-body h4 {
+    color: var(--tmd-green);
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    font-size: 1.25rem;
+    border-bottom: 2px solid var(--tmd-green);
+    padding-bottom: 0.5rem;
+}
+
+/* Amélioration de la présentation des listes (look check-list pro) */
+.modal-body ul {
+    list-style: none; 
+    padding-left: 0;
+    margin-top: 1rem;
+}
+.modal-body ul li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5em; 
+    text-indent: -1.5em;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #495057;
+}
+.modal-body ul li:before {
+    content: "✓"; /* Symbole de check pour un look professionnel */
+    color: var(--tmd-green);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.5em; 
+    font-size: 1.1em;
+}
+
+/* Bouton de fermeture dans la modale: positionné en haut à droite du texte */
+.modal-body .btn-close {
+    position: relative; /* Ajustement de la position pour le placer dans le col-md-7 */
+    top: 0;
+    right: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.modal-body .btn-close:hover {
+    opacity: 1;
+}
+
+/* Responsive Design pour les Modales */
+@media (max-width: 767.98px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100vw - 1rem);
+    }
+
+    .modal-realisation {
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .realisation-img {
+        min-height: 250px !important;
+        border-right: none !important;
+        border-bottom: 3px solid var(--tmd-green) !important;
+    }
+
+    .modal-body {
+        padding: 1.5rem 1rem !important;
+    }
+
+    .modal-body h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-body .lead {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .modal-body h4 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.75rem 0;
+    }
+
+    .modal-body h5 {
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .modal-body ul li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        padding-left: 1.25em;
+        text-indent: -1.25em;
+    }
+
+    .modal-body ul li:before {
+        font-size: 1rem;
+        margin-right: 0.25em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .modal-dialog {
+        max-width: 90vw;
+        margin: 1rem auto;
+    }
+
+    .realisation-img {
+        min-height: 400px;
+    }
+
+    .modal-body {
+        padding: 2rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 1200px;
+    }
+
+    .realisation-img {
+        min-height: 500px;
+    }
+}
+
+/* Améliorations iOS et appareils tactiles */
+@media (max-width: 767.98px) {
+    .modal-content {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .realisation-link {
+        -webkit-tap-highlight-color: rgba(56, 193, 114, 0.1);
+    }
+
+    .modal-body .btn-close {
+        padding: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Gestion du scroll sur petits écrans */
+@media (max-height: 600px) and (max-width: 767.98px) {
+    .modal-body {
+        max-height: 70vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .realisation-img {
+        min-height: 180px !important;
+    }
+}
 
 /* ===================================== */
 /* 5. SECTION NOS PARTENAIRES */
 /* ===================================== */
+
+#partenaires {
+    background-color: var(--tmd-background-light);
+}
 
 .partenaire-card {
     min-height: 120px;
@@ -134,17 +571,18 @@ h2.display-4 {
 
 .partenaire-card:hover {
     transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .partenaire-card img {
     max-width: 100%;
-    max-height: 70px; /* Limiter la hauteur des logos */
-    filter: grayscale(100%); /* Optionnel : Griser les logos par défaut */
+    max-height: 70px;
+    filter: grayscale(100%);
     transition: filter 0.3s;
 }
 
 .partenaire-card:hover img {
-    filter: grayscale(0%); /* Optionnel : Couleur au survol */
+    filter: grayscale(0%); 
 }
 
 
@@ -156,9 +594,9 @@ h2.display-4 {
     border-radius: 12px;
 }
 
-/* Styles pour les coordonnées (partie gauche du formulaire) */
 #contact h3 {
     font-weight: 600;
+    color: var(--tmd-dark);
 }
 
 #contact .d-flex i {
@@ -166,24 +604,17 @@ h2.display-4 {
     color: var(--tmd-green);
 }
 
-/* Styles du formulaire */
 .form-control {
     border-radius: 8px;
     padding: 10px 15px;
 }
 
-/* Styles pour le placeholder de la Google Map */
 .map-placeholder {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    /* La map intégrée occupera 100% de la hauteur/largeur */
 }
 
-/* Cacher l'icône de la carte cassée si la map ne se charge pas */
-.map-placeholder iframe {
-    display: block;
-}
 
 /* ===================================== */
 /* 7. FOOTER */
