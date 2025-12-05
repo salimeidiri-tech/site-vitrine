@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Chemins relatifs depuis le dossier main vers le dossier include dans le répertoire parent.
 
 // 1. Connexion à la base de données

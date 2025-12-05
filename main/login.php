@@ -1,14 +1,10 @@
 <?php
+session_start();
+
 // Chemins relatifs depuis le dossier main vers le dossier include dans le répertoire parent.
 
 // 1. Connexion à la base de données
 require_once '../include/db.php';
-
-// 2. Inclusion de l'en-tête
-require_once '../include/header.php';
-
-// 3. Inclusion de la barre de navigation
-require_once '../include/navbar.php';
 
 // Gestion de la connexion
 $message = '';
@@ -59,6 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+// 2. Inclusion de l'en-tête
+require_once '../include/header.php';
+
+// 3. Inclusion de la barre de navigation
+require_once '../include/navbar.php';
 ?>
 
 <main>
