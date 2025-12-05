@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMD EXPO | Excellence Événementielle</title>
+    <link rel="icon" href="/site01/logo.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/site01/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2ecc71;
+            --primary-dark: #27ae60;
+            --dark: #1a1a1a;
+            --gray: #6c757d;
+            --light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            transition: all 0.3s;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, 30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .badge {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+
+        .badge:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge strong {
+            display: block;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .underline {
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0 auto 1rem;
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        #realisations .grid {
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.4s;
+        }
+
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+
+        .project-overlay span {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-overlay h3 {
+            font-size: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .partners {
+            background: var(--light);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .partner-logo {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 120px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--dark) 0%, #2c3e50 100%);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(46, 204, 113, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.3);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-badges {
+                flex-direction: column;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-image {
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+        }
+
+        .modal-body {
+            padding: 3rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-image {
+                min-height: 200px;
+            }
+
+            .modal-body {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">
+                    <span>●</span> TMD EXPO
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#realisations">Réalisations</a></li>
+                    <li><a href="#partners">Partenaires</a></li>
+                    <li><a href="#contact" class="cta-btn">Contact</a></li>
+                </ul>
+                <div class="mobile-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero-content">
+                <h1>L'excellence événementielle depuis 2021</h1>
+                <p class="subtitle">Partenaire privilégié des grands acteurs de l'événementiel français</p>
+                <p style="max-width: 700px; font-size: 1.1rem; color: var(--gray); margin-bottom: 2rem;">
+                    Basée à Saint-Ouen, TMD EXPO transforme vos visions en réalités événementielles exceptionnelles.
+                    Du transport sécurisé à l'installation sur mesure, nous orchestrons chaque détail avec une précision d'horloger.
+                </p>
+                <a href="#contact" class="cta-btn" style="display: inline-block; margin-right: 1rem;">Discutons de votre projet</a>
+                <div class="hero-badges">
+                    <div class="badge">
+                        <strong>3+</strong>
+                        <span>Années d'expérience</span>
+                    </div>
+                    <div class="badge">
+                        <strong>100%</strong>
+                        <span>France entière</span>
+                    </div>
+                    <div class="badge">
+                        <strong>24/7</strong>
+                        <span>Disponibilité</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos services</h2>
+                <div class="underline"></div>
+                <p>Une expertise complète pour la réussite de vos événements</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🚚</div>
+                    <h3>Transport & Logistique</h3>
+                    <p>Acheminement sécurisé de vos équipements sur tous les sites événementiels de France, avec un suivi en temps réel.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔨</div>
+                    <h3>Montage & Installation</h3>
+                    <p>Installation professionnelle de stands sur mesure et structures modulaires, respectant les délais les plus serrés.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛠️</div>
+                    <h3>Assistance Technique</h3>
+                    <p>Support technique réactif sur site, disponible pendant toute la durée de votre événement.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📦</div>
+                    <h3>Stockage & Coordination</h3>
+                    <p>Gestion complète du stockage et coordination stratégique avec tous vos prestataires.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="realisations" style="background: var(--light);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos réalisations</h2>
+                <div class="underline"></div>
+                <p>Découvrez quelques-uns des événements que nous avons accompagnés</p>
+            </div>
+            <div class="grid">
+                <div class="project-card" onclick="openModal('modal1')">
+                    <img src="https://clickatlife.gr/fu/p/20232/1200/10000/00000000004cbc50/1/xristougenna-parisi-agora-la-defense.jpg" alt="Marché de Noël">
+                    <div class="project-overlay">
+                        <span>Événement saisonnier</span>
+                        <h3>Marché de Noël</h3>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('modal2')">
+                    <img src="https://cdn.cultura.com/cdn-cgi/image/width=768/media/pim/TITELIVE/51_9782357334830_1_75.jpg" alt="Hippodrome de Longchamp">
+                    <div class="project-overlay">
+                        <span>Événement sportif</span>
+                        <h3>Hippodrome de Longchamp</h3>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('modal3')">
+                    <img src="https://open-images.acast.com/shows/686e315a8d3d6839f4ea5f73/1752053451511-2a449818-ae7f-47ec-aa20-fb42b1271e21.jpeg?height=800" alt="Fête de l'Humanité">
+                    <div class="project-overlay">
+                        <span>Festival culturel</span>
+                        <h3>Fête de l'Humanité</h3>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('modal4')">
+                    <img src="https://logo.com/image-cdn/images/kts928pd/production/59f2aa87d3c8527e5f6adfb709080f5bf69c11f7-1024x600.png?w=1200&q=72&fm=webp" alt="Salon Hermès">
+                    <div class="project-overlay">
+                        <span>Luxe & Prestige</span>
+                        <h3>Salon Hermès</h3>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('modal5')">
+                    <img src="https://uploads.lebonbon.fr/source/2025/Lyon/avril/foire-lyon-2025.jpg" alt="Foire de Lyon">
+                    <div class="project-overlay">
+                        <span>Foire commerciale</span>
+                        <h3>Foire de Lyon</h3>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('modal6')">
+                    <img src="https://www.univers-habitat.eu/wp-content/uploads/2025/04/Univers-Habitat-Le-Salon-du-Made-In-France-revient-du-6-au-9-novembre-2025-750x450.png" alt="Salon Made in France">
+                    <div class="project-overlay">
+                        <span>Salon professionnel</span>
+                        <h3>Salon Made in France</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="partners">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nos partenaires</h2>
+                <div class="underline"></div>
+                <p>Nous collaborons avec les meilleurs</p>
+            </div>
+            <div class="partners-grid">
+                <div class="partner-logo">
+                    <img src="https://marquage-4g.com/media/images/accueil/logo32.jpg" alt="Jaulin">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://www.alive-technology.fr/wp-content/uploads/2023/03/AliveEvents_Profil-300x300.jpg" alt="Alive Events">
+                </div>
+                <div class="partner-logo">
+                    <img src="https://www.gl-events.com/sites/default/files/logo_cookies/gl-events-logo2x_0.png" alt="GL Events">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">Contactez-nous</h2>
+                <div class="underline"></div>
+                <p style="color: rgba(255, 255, 255, 0.8);">Prêt à donner vie à votre prochain événement ?</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>13 rue Palouzie<br>93400 Saint-Ouen-sur-Seine</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>tmd.expo@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>06 04502278</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>TMD EXPO</h4>
+                    <p>Votre partenaire de confiance pour la logistique et l'installation événementielle en France.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#realisations">Réalisations</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>13 rue Palouzie<br>93400 Saint-Ouen-sur-Seine<br><br>tmd.expo@gmail.com<br>06 04502278</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TMD EXPO. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal1" class="modal" onclick="closeModal('modal1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal1')">×</button>
+            <div class="modal-image" style="background-image: url('https://clickatlife.gr/fu/p/20232/1200/10000/00000000004cbc50/1/xristougenna-parisi-agora-la-defense.jpg');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Événement saisonnier</span>
+                <h2 style="margin: 1rem 0;">Marché de Noël (La Défense)</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Création d'une ambiance festive et sécurisée pour un événement majeur.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Notre Mission</h4>
+                <p>Gestion complète de la logistique événementielle avec installation et maintenance de la structure éphémère du marché au cœur du quartier d'affaires.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Gestion de 350+ exposants</li>
+                    <li>Sécurité et signalétique</li>
+                    <li>Coordination des animations</li>
+                    <li>Partenariat avec Jaulin</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal" onclick="closeModal('modal2')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal2')">×</button>
+            <div class="modal-image" style="background-image: url('https://cdn.cultura.com/cdn-cgi/image/width=768/media/pim/TITELIVE/51_9782357334830_1_75.jpg');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Événement sportif</span>
+                <h2 style="margin: 1rem 0;">Hippodrome de Longchamp</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Mise en œuvre technique pour les grands prix hippiques et événements musicaux.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Notre Expertise</h4>
+                <p>Installation d'infrastructures audiovisuelles et scéniques complexes pour les courses emblématiques et festivals comme Solidays.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Scénographie et éclairage professionnel</li>
+                    <li>Sonorisation des tribunes</li>
+                    <li>Écrans géants LED</li>
+                    <li>Partenariat avec Alive Events</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal" onclick="closeModal('modal3')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal3')">×</button>
+            <div class="modal-image" style="background-image: url('https://open-images.acast.com/shows/686e315a8d3d6839f4ea5f73/1752053451511-2a449818-ae7f-47ec-aa20-fb42b1271e21.jpeg?height=800');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Festival culturel</span>
+                <h2 style="margin: 1rem 0;">Fête de l'Humanité</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Accompagnement logistique de l'un des plus grands festivals français.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Un Événement Massif</h4>
+                <p>Coordination des multiples scènes, villages thématiques et espaces d'exposition pour des milliers de festivaliers.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Montage et démontage rapide</li>
+                    <li>Distribution électrique temporaire</li>
+                    <li>Gestion des zones de restauration</li>
+                    <li>Coordination logistique complète</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal" onclick="closeModal('modal4')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal4')">×</button>
+            <div class="modal-image" style="background-image: url('https://logo.com/image-cdn/images/kts928pd/production/59f2aa87d3c8527e5f6adfb709080f5bf69c11f7-1024x600.png?w=1200&q=72&fm=webp');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Luxe & Prestige</span>
+                <h2 style="margin: 1rem 0;">Salon Hermès</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Stands et espaces d'exposition sur-mesure pour la Maison de Luxe.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Excellence et Raffinement</h4>
+                <p>Conception et réalisation de structures éphémères haut de gamme avec une attention particulière aux finitions et aux matériaux.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Design et fabrication de stands premium</li>
+                    <li>Gestion du mobilier et décors</li>
+                    <li>Solutions d'éclairage d'ambiance</li>
+                    <li>Respect du cahier des charges luxe</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal" onclick="closeModal('modal5')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal5')">×</button>
+            <div class="modal-image" style="background-image: url('https://uploads.lebonbon.fr/source/2025/Lyon/avril/foire-lyon-2025.jpg');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Foire commerciale</span>
+                <h2 style="margin: 1rem 0;">Foire de Lyon</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Accompagnement de GL Events pour les grandes foires commerciales.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Espaces d'Exposition Géants</h4>
+                <p>Intervention sur la partie structurelle et modulaire des stands pour les exposants au Parc Eurexpo.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Montage de cloisons modulaires</li>
+                    <li>Installation de moquettes et podiums</li>
+                    <li>Logistique des livraisons</li>
+                    <li>Partenariat avec GL Events</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal" onclick="closeModal('modal6')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('modal6')">×</button>
+            <div class="modal-image" style="background-image: url('https://www.univers-habitat.eu/wp-content/uploads/2025/04/Univers-Habitat-Le-Salon-du-Made-In-France-revient-du-6-au-9-novembre-2025-750x450.png');"></div>
+            <div class="modal-body">
+                <span style="color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem;">Salon professionnel</span>
+                <h2 style="margin: 1rem 0;">Salon Made in France</h2>
+                <p style="color: var(--gray); margin-bottom: 2rem;">Valorisation du savoir-faire français à travers des aménagements dédiés.</p>
+                <h4 style="margin-top: 2rem; color: var(--dark);">Promotion de l'Industrie Locale</h4>
+                <p>Création d'espaces visuellement attrayants respectant une démarche écologique et durable.</p>
+                <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--gray);">
+                    <li>Conception de stands écologiques</li>
+                    <li>Mobilier éco-responsable</li>
+                    <li>Gestion des flux visiteurs</li>
+                    <li>Partenariat avec entreprises françaises</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("f3hMaGojr57RTRb5_");
+
+        const navbar = document.querySelector('.navbar');
+        const mobileToggle = document.querySelector('.mobile-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        function openModal(modalId) {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                message: this.message.value
+            };
+
+            emailjs.send("service_gfbuffa", "template_1dqrsvf", formData)
+                .then(() => {
+                    alert("Message envoyé avec succès !");
+                    this.reset();
+                })
+                .catch((error) => {
+                    alert("Erreur lors de l'envoi : " + error.text);
+                });
+        });
+    </script>
+</body>
+</html>
